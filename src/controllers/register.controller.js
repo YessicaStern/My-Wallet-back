@@ -1,6 +1,7 @@
 import joi from "joi";
 import { joiPasswordExtendCore } from "joi-password";
 import db from "../database/db.js"
+import bcrypt from "bcrypt";
 
 const joiPassword = joi.extend(joiPasswordExtendCore);
 

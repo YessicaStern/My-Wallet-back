@@ -1,14 +1,14 @@
 import express from "express";
+import { login } from "../controllers/login.controller.js";
 import { register } from "../controllers/register.controller.js";
-import { login } from "../controllers/login.js";
-import { container } from "../controllers/container.controller.js";
-import { testando } from "../middleware/middleware.js";
+import { container,newEntry, newExit } from "../controllers/container.controller.js";
 
 const router = express.Router();
 
-router.use(testando)
-router.post("/", login );
+router.post("/", login);
 router.post("/cadastro" , register);
-router.get("/conteudo", container);
+router.get("/movimentacoes", container);
+router.post("/movimentacoes-entrada", newEntry);
+router.post("/movimentacoes-saida", newExit);
 
 export default router;
