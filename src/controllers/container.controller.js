@@ -33,7 +33,7 @@ const newEntry = async (req,res)=>{
     try{
         const session = await db.collection("session").findOne({token});
         const user= await db.collection("users").findOne({_id: session.userId});
-        db.collection("movements").insertOne({value,description,day,type:"entry", userId: user._id});
+        db.collection("movements").insertOne({value,description,day,type:true, userId: user._id});
         res.send(201);
     }catch(err){
         res.send(err.message);
@@ -46,7 +46,7 @@ const newExit = async (req,res)=>{
     const {value, description}=entry;
     const validation=entrySchema.validate(entry);
 
-    let today = `${new Date().getDate()}/${(new Date().getMonth() + 1)}`
+    let day = `${new Date().getDate()}/${(new Date().getMonth() + 1)}`
 
     if(validation.error){
         return res.status(422).send({
@@ -56,12 +56,13 @@ const newExit = async (req,res)=>{
     try{
         const session = await db.collection("session").findOne({token});
         const user= await db.collection("users").findOne({_id: session.userId});
-        db.collection("movements").insertOne({value,description,today,type:"exit", userId: user._id});
+        db.collection("movements").insertOne({value,description,day,type:false, userId: user._id});
         res.send(201);
     }catch(err){
         res.send(err.message);
     }
 }
+
 
 
 export {container,newEntry,newExit};
