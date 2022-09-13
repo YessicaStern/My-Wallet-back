@@ -6,8 +6,6 @@ import { Test } from "../middleware/middleware.js";
 
 const router = express.Router();
 
-
-
 router.use(Test);
 router.post("/", login);
 router.post("/cadastro" , register);

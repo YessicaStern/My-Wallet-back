@@ -3,4 +3,5 @@ function Test(req,res,next){
     console.log("Middleware",token);
     next();
 }
+
 export {Test}

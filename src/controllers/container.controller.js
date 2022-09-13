@@ -16,7 +16,6 @@ const container = async (req,res)=>{
         res.status(500).send(err.message);
     }
 }
-
 const newEntry = async (req,res)=>{
     const token=req.headers.authorization?.replace("Bearer ","");
     const entry=req.body;
